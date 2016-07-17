@@ -68,7 +68,13 @@ void setup() {
   Serial.begin(9600);
   srand(analogRead(0));
 
-  setTime(7, 7, 7, 19, 2, 1977);
+  initTime();
+}
+
+void initTime() {
+  int hour, min, sec, month = 1, day = 1, year = 2016;
+  sscanf(__TIME__, "%02d:%02d:%02d\n", &hour, &min, &sec);
+  setTime(hour, min, sec, day, month, year);
 }
 
 void printBoxes(uint8_t const *boxes) {
@@ -103,8 +109,8 @@ void loop() {
   numberToFibBoxes(hours, boxes, COLOR_HOURS);
   numberToFibBoxes(minutes, boxes, COLOR_MINUTES);
 
-  printTime();
-  printBoxes(boxes);
+  // printTime();
+  // printBoxes(boxes);
 
   for (uint8_t i = 0; i < BOX_COUNT; i++) {
     Color c = colorMap[boxes[i]];

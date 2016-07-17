@@ -18,9 +18,9 @@ typedef struct {
 
 // Set your preferred colors here
 const Color off = {red : 0, green : 0, blue : 0};       // black
-const Color hours = {red : 255, green : 255, blue : 0}; // yellow
-const Color minutes = {red : 0, green : 0, blue : 255}; // blue
-const Color both = {red : 255, green : 0, blue : 0};    // red
+const Color hours = {red : 128, green : 128, blue : 0}; // yellow
+const Color minutes = {red : 0, green : 0, blue : 128}; // blue
+const Color both = {red : 128, green : 0, blue : 0};    // red
 Color colorMap[4] = {off, hours, minutes, both};
 
 #define MAX_CHOICES 4

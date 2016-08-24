@@ -4,6 +4,16 @@
 namespace FibClock {
 void begin() { srand(analogRead(0)); }
 
+void chooseBoxColors(uint8_t hours, uint8_t minutes, uint8_t *boxes) {
+  if (hours > 12) {
+    hours -= 12;
+  }
+  minutes /= 5;
+
+  FibClock::numberToFibBoxes(hours, boxes, COLOR_HOURS);
+  FibClock::numberToFibBoxes(minutes, boxes, COLOR_MINUTES);
+}
+
 void numberToFibBoxes(uint8_t number, uint8_t *boxes, uint8_t colorType) {
   uint8_t choice = 0;
 

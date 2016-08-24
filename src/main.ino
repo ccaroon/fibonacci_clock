@@ -1,80 +1,59 @@
 #include <Adafruit_NeoPixel.h>
+#include <RTClib.h>
 #include <TimeLib.h>
+#include <Wire.h>
 #ifdef __AVR__
 #include <avr/power.h>
 #endif
 
-#include "main.h"
+#include "FibClock.h"
 
-#define NEO_PIN 6
-// #define NEO_COUNT 5
+RTC_DS1307 rtc;
+// RTC_Millis rtc;
+
+#define NEO_PIN 12
 Adafruit_NeoPixel strip =
     Adafruit_NeoPixel(BOX_COUNT, NEO_PIN, NEO_GRB + NEO_KHZ800);
 
-void numberToFibBoxes(uint8_t number, uint8_t *boxes, uint8_t colorType) {
-  uint8_t choice;
-
-  // TODO: simplify this
-  switch (number) {
-  case 1:
-    choice = rand() % 2; // Actual number of choices
-    break;
-  case 2:
-    choice = rand() % 2; // Actual number of choices
-    break;
-  case 3:
-    choice = rand() % 3; // Actual number of choices
-    break;
-  case 4:
-    choice = rand() % 3; // Actual number of choices
-    break;
-  case 5:
-    choice = rand() % 3; // Actual number of choices
-    break;
-  case 6:
-    choice = rand() % 4; // Actual number of choices
-    break;
-  case 7:
-    choice = rand() % 2; // Actual number of choices
-    break;
-  case 8:
-    choice = rand() % 3; // Actual number of choices
-    break;
-  case 9:
-    choice = rand() % 3; // Actual number of choices
-    break;
-  case 10:
-    choice = rand() % 2; // Actual number of choices
-    break;
-  case 11:
-    choice = rand() % 2; // Actual number of choices
-    break;
-  case 12:
-    choice = 0; // Actual number of choices
-    break;
-  }
-
-  if (number > 0) {
-    for (uint8_t i = 0; i < MAX_COMBOS; i++) {
-      if (fibMap[number][choice][i] != EMPTY) {
-        boxes[fibMap[number][choice][i]] += colorType;
-      }
-    }
-  }
+time_t rtcSync() {
+  DateTime now = rtc.now();
+  return now.unixtime();
 }
 
 void setup() {
   strip.begin();
   Serial.begin(9600);
-  srand(analogRead(0));
 
-  initTime();
+  FibClock::begin();
+  // rtc.begin(DateTime(F(__DATE__), F(__TIME__)));
+  rtc.begin();
+  // rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+
+  setSyncProvider(rtcSync);
+  setSyncInterval(60);
+  if (timeStatus() != timeSet) {
+    Serial.println("Failed to Sync Time with RTC");
+  }
 }
 
-void initTime() {
-  int hour, min, sec, month = 1, day = 1, year = 2016;
-  sscanf(__TIME__, "%02d:%02d:%02d\n", &hour, &min, &sec);
-  setTime(hour, min, sec, day, month, year);
+void loop() {
+  int hours, minutes;
+  uint8_t boxes[BOX_COUNT] = {0};
+
+  hours = hour();
+  minutes = minute();
+
+  FibClock::chooseBoxColors(hours, minutes, boxes);
+
+  for (uint8_t i = 0; i < BOX_COUNT; i++) {
+    Color c = colorMap[boxes[i]];
+    strip.setPixelColor(i, c.red, c.green, c.blue);
+  }
+  strip.show();
+
+  printTime();
+
+  delay(60000);
 }
 
 void printBoxes(uint8_t const *boxes) {
@@ -92,34 +71,4 @@ void printTime() {
   Serial.print(minute());
   Serial.print(":");
   Serial.println(second());
-}
-
-void loop() {
-  int hours, minutes;
-  uint8_t boxes[BOX_COUNT] = {0};
-
-  hours = hour();
-  if (hours > 12) {
-    hours -= 12;
-  }
-  minutes = minute();
-  minutes /= 5;
-
-  // memset(boxes, 0, BOX_COUNT * sizeof(uint8_t));
-  numberToFibBoxes(hours, boxes, COLOR_HOURS);
-  numberToFibBoxes(minutes, boxes, COLOR_MINUTES);
-
-  // printTime();
-  // printBoxes(boxes);
-
-  for (uint8_t i = 0; i < BOX_COUNT; i++) {
-    Color c = colorMap[boxes[i]];
-    uint32_t color = strip.Color(c.red, c.green, c.blue);
-    strip.setPixelColor(i, color);
-  }
-
-  strip.show();
-
-  delay(60000);
-  // delay(999);
 }

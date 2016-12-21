@@ -4,3 +4,4 @@
 *.gch
 lib/readme.txt
 .travis.yml
+.piolibdeps

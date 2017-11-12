@@ -1,5 +1,5 @@
 #include "FibClock.h"
-#include "arduino.h"
+#include "Arduino.h"
 
 namespace FibClock {
 void begin() {

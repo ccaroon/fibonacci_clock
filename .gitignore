@@ -5,3 +5,5 @@
 lib/readme.txt
 .travis.yml
 .piolibdeps
+.pioenvs
+.piolibdeps

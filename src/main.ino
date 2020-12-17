@@ -25,7 +25,7 @@ void setup() {
     Serial.begin(9600);
 
     FibClock::begin();
-    // rtc.begin(DateTime(F(__DATE__), F(__TIME__)));
+
     rtc.begin();
     // rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
     // rtc.adjust(DateTime(F(__DATE__), F("19:56:00")));

@@ -6,10 +6,10 @@
 #include <avr/power.h>
 #endif
 
+#include "Effects.h"
 #include "FibClock.h"
 
 RTC_DS1307 rtc;
-// RTC_Millis rtc;
 
 #define NEO_PIN 12
 Adafruit_NeoPixel strip =
@@ -40,7 +40,7 @@ void setup() {
     }
 }
 
-void loop() {
+void fibClock(uint8_t displayMins) {
     int hours, minutes;
     uint8_t boxes[BOX_COUNT] = {0};
 
@@ -55,9 +55,19 @@ void loop() {
     }
     strip.show();
 
+    delay(60000 * displayMins);
+}
+
+void loop() {
+    int minutes = minute();
+
     printTime();
 
-    delay(60000);
+    if (minutes % 15 == 0) {
+        fibClock(5);
+    } else {
+        Effects::rainbowCycle(strip, 45);
+    }
 }
 
 void printBoxes(uint8_t const *boxes) {

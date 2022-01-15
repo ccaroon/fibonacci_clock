@@ -62,12 +62,12 @@ void loop() {
     int minutes = minute();
 
     printTime();
-
-    if (minutes % 15 == 0) {
-        fibClock(5);
-    } else {
-        Effects::rainbowCycle(strip, 45);
-    }
+    fibClock(1);
+    // if (minutes % 15 == 0) {
+    //     fibClock(5);
+    // } else {
+    //     Effects::rainbowCycle(strip, 45);
+    // }
 }
 
 void printBoxes(uint8_t const *boxes) {

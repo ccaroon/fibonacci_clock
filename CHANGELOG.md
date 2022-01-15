@@ -1,5 +1,9 @@
 # CHANGELOG
 
+# 2022-01-15
+* Changed to "Winter" (cold) colors
+* Show the time always; no effects
+
 # 2021-12-20
 * Added Effects
 * Re-programmed to display the time every 15 minutes, otherwise it displays a

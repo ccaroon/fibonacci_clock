@@ -22,17 +22,65 @@ typedef struct {
 } Color;
 
 // Set your preferred colors here
-const Color off = {red : 0, green : 0, blue : 0};        // black
-const Color hours = {red : 0, green : 64, blue : 128};   // blue
-const Color minutes = {red : 0, green : 128, blue : 64}; // cyan
-const Color both = {red : 128, green : 128, blue : 128}; // white
-const Color colorMap[4] = {off, hours, minutes, both};
+const Color off = {red : 0, green : 0, blue : 0}; // black
+
+// ----- Seasonal Color Sets ---------------------------------------------------
+// Winter Colors
+#define WINTER 0
+// 0:off, 1:hours, 2:minutes, 3:both
+const Color winterMap[4] = {
+    off,
+    {red : 0, green : 64, blue : 128},    // blue
+    {red : 0, green : 128, blue : 64},    // cyan
+    {red : 128, green : 128, blue : 128}, // white
+};
+
+// Spring Colors
+#define SPRING 1
+// 0:off, 1:hours, 2:minutes, 3:both
+const Color springMap[4] = {
+    off,
+    {red : 0, green : 255, blue : 85},   // green
+    {red : 255, green : 85, blue : 100}, // pink
+    {red : 50, green : 0, blue : 255},   // blue
+};
+
+// Summer Colors
+#define SUMMER 2
+// 0:off, 1:hours, 2:minutes, 3:both
+const Color summerMap[4] = {
+    off,
+    {red : 255, green : 255, blue : 0}, // yellow
+    {red : 50, green : 50, blue : 255}, // blue
+    {red : 0, green : 255, blue : 0},   // green
+};
+
+// Fall Colors
+#define FALL 3
+// 0:off, 1:hours, 2:minutes, 3:both
+const Color fallMap[4] = {
+    off,
+    {red : 255, green : 0, blue : 0},   // red
+    {red : 240, green : 255, blue : 0}, // yellow
+    {red : 255, green : 100, blue : 0}, // orange
+};
+// -----------------------------------------------------------------------------
+
+// Spring: 3,20  to 6,20   => 320 to 620
+// Summer: 6,21  to 9,21   => 621 to 921
+// Fall:   9,22  to 12,20  => 922 to 1220
+// Winter: 12,21 to 3,19   => 1221 to 319
+#define START_OF_SPRING 320
+#define START_OF_SUMMER 621
+#define START_OF_FALL 922
+#define START_OF_WINTER 1221
 
 #define MAX_CHOICES 4
 #define MAX_COMBOS 5
 
 namespace FibClock {
 void begin();
+const Color *colorMapBySeason(int month, int day);
 void numberToFibBoxes(uint8_t number, uint8_t *boxes, uint8_t colorType);
 void chooseBoxColors(uint8_t hours, uint8_t minutes, uint8_t *boxes);
 

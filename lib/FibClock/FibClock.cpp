@@ -6,6 +6,28 @@ void begin() {
     srand(analogRead(0));
 }
 
+const Color *colorMapBySeason(int month, int day) {
+    const Color *colorMap;
+
+    int seasonId = (month * 100) + day;
+
+    if (seasonId >= START_OF_SPRING && seasonId < START_OF_SUMMER) {
+        Serial.println("Spring");
+        colorMap = springMap;
+    } else if (seasonId >= START_OF_SUMMER && seasonId < START_OF_FALL) {
+        Serial.println("Summer");
+        colorMap = summerMap;
+    } else if (seasonId >= START_OF_FALL && seasonId < START_OF_WINTER) {
+        Serial.println("Fall");
+        colorMap = fallMap;
+    } else if (seasonId >= START_OF_WINTER || seasonId < START_OF_SPRING) {
+        Serial.println("Winter");
+        colorMap = winterMap;
+    }
+
+    return colorMap;
+}
+
 void chooseBoxColors(uint8_t hours, uint8_t minutes, uint8_t *boxes) {
     if (hours > 12) {
         hours -= 12;
@@ -67,4 +89,4 @@ void numberToFibBoxes(uint8_t number, uint8_t *boxes, uint8_t colorType) {
         }
     }
 }
-};
+}; // namespace FibClock

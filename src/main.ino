@@ -27,8 +27,10 @@ void setup() {
     FibClock::begin();
 
     rtc.begin();
+    // UNCOMMENT to adjust the date and time to the timestamp of this file
     // rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
     // rtc.adjust(DateTime(F(__DATE__), F("19:56:00")));
+    // rtc.adjust(DateTime(F("Jul 20 2022"), F("18:45:15")));
 
     // Serial.println(__DATE__);
     // Serial.println(__TIME__);
@@ -41,13 +43,19 @@ void setup() {
 }
 
 void fibClock(uint8_t displayMins) {
-    int hours, minutes;
+    int hours, minutes, currDay, currMonth;
     uint8_t boxes[BOX_COUNT] = {0};
+    const Color *colorMap;
 
     hours = hour();
     minutes = minute();
 
+    currDay = day();
+    currMonth = month();
+
     FibClock::chooseBoxColors(hours, minutes, boxes);
+    Serial.println((currMonth * 100) + currDay);
+    colorMap = FibClock::colorMapBySeason(currMonth, currDay);
 
     for (uint8_t i = 0; i < BOX_COUNT; i++) {
         Color c = colorMap[boxes[i]];
@@ -59,7 +67,7 @@ void fibClock(uint8_t displayMins) {
 }
 
 void loop() {
-    int minutes = minute();
+    // int minutes = minute();
 
     printTime();
     fibClock(1);

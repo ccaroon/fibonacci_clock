@@ -9,18 +9,18 @@ void begin() {
 const Color *colorMapBySeason(int month, int day) {
     const Color *colorMap;
 
-    int seasonId = (month * 100) + day;
+    int dateCode = (month * 100) + day;
 
-    if (seasonId >= START_OF_SPRING && seasonId < START_OF_SUMMER) {
+    if (dateCode >= START_OF_SPRING && dateCode < START_OF_SUMMER) {
         Serial.println("Spring");
         colorMap = springMap;
-    } else if (seasonId >= START_OF_SUMMER && seasonId < START_OF_FALL) {
+    } else if (dateCode >= START_OF_SUMMER && dateCode < START_OF_FALL) {
         Serial.println("Summer");
         colorMap = summerMap;
-    } else if (seasonId >= START_OF_FALL && seasonId < START_OF_WINTER) {
+    } else if (dateCode >= START_OF_FALL && dateCode < START_OF_WINTER) {
         Serial.println("Fall");
         colorMap = fallMap;
-    } else if (seasonId >= START_OF_WINTER || seasonId < START_OF_SPRING) {
+    } else if (dateCode >= START_OF_WINTER || dateCode < START_OF_SPRING) {
         Serial.println("Winter");
         colorMap = winterMap;
     }

@@ -66,10 +66,10 @@ const Color fallMap[4] = {
 };
 // -----------------------------------------------------------------------------
 
-// Spring: 3,20  to 6,20   => 320 to 620
-// Summer: 6,21  to 9,21   => 621 to 921
-// Fall:   9,22  to 12,20  => 922 to 1220
-// Winter: 12,21 to 3,19   => 1221 to 319
+// Spring: 3-20  to 6-20   => 320 to 620
+// Summer: 6-21  to 9-21   => 621 to 921
+// Fall:   9-22  to 12-20  => 922 to 1220
+// Winter: 12-21 to 3-19   => 1221 to 319
 #define START_OF_SPRING 320
 #define START_OF_SUMMER 621
 #define START_OF_FALL 922

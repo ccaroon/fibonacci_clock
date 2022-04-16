@@ -57,6 +57,13 @@ void fibClock(uint8_t displayMins) {
     Serial.println((currMonth * 100) + currDay);
     colorMap = FibClock::colorMapBySeason(currMonth, currDay);
 
+    // TEST Pattern. Show each box in differet color
+    // for (uint8_t i = 0; i < BOX_COUNT; i++) {
+    //     Color c = colorMap[i];
+    //     strip.setPixelColor(i, c.red, c.green, c.blue);
+    // }
+    // -------------------------------------------------------------------------
+    // Display Time Colors
     for (uint8_t i = 0; i < BOX_COUNT; i++) {
         Color c = colorMap[boxes[i]];
         strip.setPixelColor(i, c.red, c.green, c.blue);

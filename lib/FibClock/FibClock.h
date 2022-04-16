@@ -40,9 +40,9 @@ const Color winterMap[4] = {
 // 0:off, 1:hours, 2:minutes, 3:both
 const Color springMap[4] = {
     off,
-    {red : 0, green : 255, blue : 85},   // green
-    {red : 255, green : 85, blue : 100}, // pink
-    {red : 50, green : 0, blue : 255},   // blue
+    {red : 0, green : 255, blue : 25},  // green
+    {red : 255, green : 0, blue : 150}, // pink
+    {red : 40, green : 0, blue : 255},  // blue
 };
 
 // Summer Colors

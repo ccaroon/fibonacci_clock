@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 2022-10-16
+* Added some color mappings for a selection of different holidays
+  - NewYear, VDay, BDay, StPatty, Indy, Halloween, Thanksgiving, Christmas
 
 ## 2022-04-10
 * Defined a color set for each season (winter, spring, summer, fall)

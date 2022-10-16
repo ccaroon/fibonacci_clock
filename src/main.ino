@@ -29,6 +29,8 @@ void setup() {
     rtc.begin();
     // UNCOMMENT to adjust the date and time to the timestamp of this file
     // rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+
+    // UNCOMMENT to adjust the date & time to a set date or time
     // rtc.adjust(DateTime(F(__DATE__), F("19:56:00")));
     // rtc.adjust(DateTime(F("Jul 20 2022"), F("18:45:15")));
 

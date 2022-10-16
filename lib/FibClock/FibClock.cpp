@@ -11,18 +11,57 @@ const Color *colorMapBySeason(int month, int day) {
 
     int dateCode = (month * 100) + day;
 
+    // Pick Color for Season
     if (dateCode >= START_OF_SPRING && dateCode < START_OF_SUMMER) {
-        Serial.println("Spring");
+        Serial.println("Season: Spring");
         colorMap = springMap;
     } else if (dateCode >= START_OF_SUMMER && dateCode < START_OF_FALL) {
-        Serial.println("Summer");
+        Serial.println("Season: Summer");
         colorMap = summerMap;
     } else if (dateCode >= START_OF_FALL && dateCode < START_OF_WINTER) {
-        Serial.println("Fall");
+        Serial.println("Season: Fall");
         colorMap = fallMap;
     } else if (dateCode >= START_OF_WINTER || dateCode < START_OF_SPRING) {
-        Serial.println("Winter");
+        Serial.println("Season: Winter");
         colorMap = winterMap;
+    }
+
+    // Override colorMap if it's a specific holiday
+    switch (dateCode) {
+    case NEWYEAR:
+        Serial.println("Holiday: New Year");
+        colorMap = newyearMap;
+        break;
+    case VALENTINES:
+        Serial.println("Holiday: St. Valentines");
+        colorMap = vdayMap;
+        break;
+    case BIRTHDAY:
+        Serial.println("Holiday: Birthday");
+        colorMap = birthdayMap;
+        break;
+    case STPATTY:
+        Serial.println("Holiday: St. Patrick's");
+        colorMap = stpattyMap;
+        break;
+    case INDYPENDY:
+        Serial.println("Holiday: Independence Day");
+        colorMap = indyMap;
+        break;
+    case HALLOWEEN:
+        Serial.println("Holiday: Halloween");
+        colorMap = halloweenMap;
+        break;
+    case THANKSGIVING:
+        Serial.println("Holiday: Thanksgiving");
+        colorMap = thanksgivingMap;
+        break;
+    case CHRISTMAS:
+        Serial.println("Holiday: Christmas");
+        colorMap = christmasMap;
+        break;
+    default:
+        break;
     }
 
     return colorMap;

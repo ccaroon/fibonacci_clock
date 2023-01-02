@@ -69,9 +69,9 @@ const Color fallMap[4] = {
 // ------ Holiday Color Sets ---------------------------------------------------
 #define NEWYEAR 101
 const Color newyearMap[4] = {
-    {red : 255, green : 255, blue : 255}, // white
     {red : 255, green : 255, blue : 0},   // yellow
     {red : 0, green : 150, blue : 200},   // blue
+    {red : 255, green : 255, blue : 255}, // white
     {red : 175, green : 0, blue : 255},   // purple
 };
 

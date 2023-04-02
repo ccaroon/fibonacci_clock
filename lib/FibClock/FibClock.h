@@ -91,6 +91,14 @@ const Color birthdayMap[4] = {
     {red : 255, green : 255, blue : 0}, // yellow
 };
 
+#define PICASSO_BDAY 1025
+const Color picassoMap[4] = {
+    {red : 255, green : 0, blue : 0},     // red
+    {red : 0, green : 0, blue : 255},     // blue
+    {red : 255, green : 255, blue : 0},   // yellow
+    {red : 255, green : 255, blue : 255}, // white
+};
+
 #define STPATTY 317
 const Color stpattyMap[4] = {
     off,

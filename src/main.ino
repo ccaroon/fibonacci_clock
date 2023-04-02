@@ -58,6 +58,8 @@ void fibClock(uint8_t displayMins) {
     FibClock::chooseBoxColors(hours, minutes, boxes);
     Serial.println((currMonth * 100) + currDay);
     colorMap = FibClock::colorMapBySeason(currMonth, currDay);
+    // Test a colorMap by Month & Day
+    // colorMap = FibClock::colorMapBySeason(10, 25);
 
     // TEST Pattern. Show each box in differet color
     // for (uint8_t i = 0; i < BOX_COUNT; i++) {

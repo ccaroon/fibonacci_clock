@@ -40,6 +40,10 @@ const Color *colorMapBySeason(int month, int day) {
         Serial.println("Holiday: Birthday");
         colorMap = birthdayMap;
         break;
+    case ANNIVERSARY:
+        Serial.println("Holiday: Anniversary");
+        colorMap = annivMap;
+        break;
     case PICASSO_BDAY:
         Serial.println("Holiday: Picasso's Birthday");
         colorMap = picassoMap;

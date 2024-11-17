@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 2024-11-17
+* Reset time b/c of DST ending
+* Added `upload_port` & `monitor_port` to `platformio.ini`
+  - `pio` was defaulting to `ttyUSB0`, but that's a USB Drive
+  - Uno is now on `ttyUSB1`
+
 ## 2022-10-16
 * Added some color mappings for a selection of different holidays
   - NewYear, VDay, BDay, StPatty, Indy, Halloween, Thanksgiving, Christmas
